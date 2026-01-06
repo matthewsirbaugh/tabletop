@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+================================================================================
+index.html - Interactive Fiction Game Entry Point
+================================================================================
+
+PURPOSE:
+This is the main HTML file for the browser-based interactive fiction game.
+It provides the structure for the game interface including:
+- A status panel showing current location and objective progress
+- A text output log with scrollback for game messages
+- A command input field for player interaction
+- Optional clickable suggested commands
+
+The game uses plain HTML/CSS/JS with ES modules for a clean, maintainable
+architecture. All game content is loaded from JSON files, making it easy
+to extend with new rooms, items, characters, and story elements.
+
+HOW IT WORKS:
+1. The browser loads this HTML file
+2. The main.js module is loaded as the entry point
+3. main.js bootstraps the game engine and loads JSON content
+4. The game renders to the DOM elements defined here
+
+USAGE:
+Open this file via a static server (e.g., `npx serve`) to play the game.
+See README.md for detailed instructions.
+
+================================================================================
+-->
+<html lang="en">
+<head>
+    <!-- Standard HTML5 character encoding declaration -->
+    <meta charset="UTF-8">
+    
+    <!-- Responsive viewport settings for mobile compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title shown in browser tab -->
+    <title>Stellar Voyager - Interactive Fiction</title>
+    
+    <!-- Link to external stylesheet for all game styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--
+    ============================================================================
+    MAIN GAME CONTAINER
+    ============================================================================
+    This container wraps all game UI elements and provides the overall layout.
+    Uses CSS Grid for responsive, clean arrangement of panels.
+    -->
+    <div id="game-container" class="game-container">
+        
+        <!--
+        ========================================================================
+        GAME HEADER
+        ========================================================================
+        Shows the game title and provides visual identity.
+        -->
+        <header id="game-header" class="game-header">
+            <!-- Main title of the game -->
+            <h1 class="game-title">Stellar Voyager</h1>
+            <!-- Subtitle explaining the game premise -->
+            <p class="game-subtitle">A Text Adventure in Space</p>
+        </header>
+        
+        <!--
+        ========================================================================
+        STATUS PANEL
+        ========================================================================
+        Displays current game state information to the player:
+        - Current room/location name
+        - Objective progress (e.g., crew members met)
+        - Any active status effects or important flags
+        
+        This panel updates dynamically as the player progresses.
+        -->
+        <aside id="status-panel" class="status-panel">
+            <!-- Section header for the status panel -->
+            <h2 class="panel-title">Ship Status</h2>
+            
+            <!-- Current location display -->
+            <div id="location-display" class="status-item">
+                <!-- Label for the location field -->
+                <span class="status-label">Location:</span>
+                <!-- Dynamic location name, updated by JavaScript -->
+                <span id="current-location" class="status-value">Loading...</span>
+            </div>
+            
+            <!-- Objective progress display -->
+            <div id="objective-display" class="status-item">
+                <!-- Label for objectives section -->
+                <span class="status-label">Mission:</span>
+                <!-- Container for objective checklist, populated by JavaScript -->
+                <div id="objective-list" class="objective-list">
+                    <!-- Objectives will be inserted here dynamically -->
+                </div>
+            </div>
+            
+            <!-- Inventory quick view (shows item count) -->
+            <div id="inventory-display" class="status-item">
+                <!-- Label for inventory section -->
+                <span class="status-label">Items:</span>
+                <!-- Item count, updated by JavaScript -->
+                <span id="item-count" class="status-value">0</span>
+            </div>
+        </aside>
+        
+        <!--
+        ========================================================================
+        MAIN GAME OUTPUT AREA
+        ========================================================================
+        This is where all game text output appears:
+        - Room descriptions
+        - Action results
+        - Dialogue
+        - Error messages
+        
+        Uses a scrollable container to allow viewing history (scrollback).
+        New messages are appended to the bottom, and the view auto-scrolls.
+        -->
+        <main id="game-output" class="game-output">
+            <!--
+            The output-log div contains all game messages.
+            Each message is a separate element (typically a <p> or <div>).
+            JavaScript appends new messages and manages scrolling.
+            -->
+            <div id="output-log" class="output-log">
+                <!-- Game messages will be inserted here dynamically -->
+            </div>
+            
+            <!--
+            ====================================================================
+            SUGGESTED COMMANDS
+            ====================================================================
+            Optional clickable buttons that appear after room descriptions.
+            These help new players discover available actions.
+            Hidden by default, shown when relevant commands are available.
+            -->
+            <div id="suggested-commands" class="suggested-commands hidden">
+                <!-- Command buttons will be inserted here dynamically -->
+            </div>
+        </main>
+        
+        <!--
+        ========================================================================
+        COMMAND INPUT AREA
+        ========================================================================
+        Where the player types commands to interact with the game.
+        Features:
+        - Text input field with placeholder text
+        - Enter key to submit commands
+        - Up/Down arrow keys for command history
+        - A visible submit button for accessibility
+        -->
+        <footer id="input-area" class="input-area">
+            <!-- Input prompt symbol (traditional adventure game style) -->
+            <span class="input-prompt">&gt;</span>
+            
+            <!--
+            The main text input field for player commands.
+            - id: for JavaScript access
+            - type: text for single-line input
+            - placeholder: hint text when empty
+            - autocomplete: off to prevent browser suggestions
+            - autofocus: focus this field when page loads
+            -->
+            <input 
+                type="text" 
+                id="command-input" 
+                class="command-input"
+                placeholder="Type a command (e.g., 'look', 'go north', 'help')"
+                autocomplete="off"
+                autofocus
+            >
+            
+            <!--
+            Submit button for accessibility (some users prefer clicking).
+            Also useful on mobile where Enter key behavior varies.
+            -->
+            <button id="submit-button" class="submit-button" type="button">
+                Enter
+            </button>
+        </footer>
+    </div>
+    
+    <!--
+    ============================================================================
+    JAVASCRIPT MODULE ENTRY POINT
+    ============================================================================
+    Load the main JavaScript file as an ES module.
+    This enables modern import/export syntax for clean code organization.
+    The "type=module" attribute is required for ES module support.
+    -->
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>

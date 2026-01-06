@@ -1,0 +1,102 @@
+[
+    {
+        "id": "first_officer",
+        "name": "Commander Chen",
+        "description": "Commander Wei Chen stands with military precision, her uniform impeccable. As First Officer, she has served aboard the Horizon since its commissioning and knows every system and crew member intimately. Her expression is professional but welcoming.",
+        "aliases": ["chen", "commander", "first officer", "xo", "number one"],
+        "defaultGreeting": "Commander Chen acknowledges you with a respectful nod.",
+        "dialogue": [
+            {
+                "id": "initial",
+                "text": "Captain, welcome aboard the USS Horizon. I'm Commander Wei Chen, your First Officer. I've prepared status reports from all departments for your review. The crew is eager to meet you - they've heard great things about your record.",
+                "setFlag": "metFirstOfficer",
+                "nextNode": "followup"
+            },
+            {
+                "id": "followup",
+                "text": "The senior staff are at their stations. Doctor Vasquez is in Sickbay, Lieutenant Hayes is at the helm, and Chief Engineer Torres is in Engineering - though you'll need your access badge to reach her. Your credentials should be on your desk.",
+                "nextNode": "ready"
+            },
+            {
+                "id": "ready",
+                "text": "I've served on this ship for three years now. She's a fine vessel, Captain. Treat her well and she'll do the same for you. Is there anything specific you'd like to know?",
+                "loop": "ready"
+            }
+        ]
+    },
+    {
+        "id": "helmsman",
+        "name": "Lieutenant Hayes",
+        "description": "Lieutenant Marcus Hayes sits at the helm console, fingers dancing over navigation controls. Young and enthusiastic, he earned his position through exceptional piloting skills demonstrated during the Academy's zero-g trials. He glances up eagerly when you approach.",
+        "aliases": ["hayes", "lieutenant", "helm", "pilot"],
+        "defaultGreeting": "Lieutenant Hayes looks up from his console with a smile.",
+        "dialogue": [
+            {
+                "id": "initial",
+                "text": "Captain on the bridge! I'm Lieutenant Marcus Hayes, your helmsman. I've plotted seventeen different routes to the Andromeda Sector, accounting for various space weather conditions. Just give the word and I'll have us there in no time!",
+                "setFlag": "metHelmsman",
+                "nextNode": "followup"
+            },
+            {
+                "id": "followup",
+                "text": "The Horizon handles like a dream, Captain. Best ship I've ever piloted. Warp drive is responsive, impulse engines are precise, and the maneuvering thrusters can thread a needle. You're going to love commanding her.",
+                "nextNode": "ready"
+            },
+            {
+                "id": "ready",
+                "text": "Helm standing by, Captain. Navigation systems are fully calibrated and ready. Just say the word when you want to undock.",
+                "loop": "ready"
+            }
+        ]
+    },
+    {
+        "id": "medical_officer",
+        "name": "Doctor Vasquez",
+        "description": "Doctor Elena Vasquez, Chief Medical Officer, reviews patient files at her desk. Her calm demeanor and kind eyes have reassured countless patients over her distinguished career. She looks up with a warm smile as you enter.",
+        "aliases": ["vasquez", "doctor", "doc", "cmo", "medical"],
+        "defaultGreeting": "Doctor Vasquez looks up from her work with a welcoming expression.",
+        "dialogue": [
+            {
+                "id": "initial",
+                "text": "Ah, Captain! I'm Doctor Elena Vasquez, Chief Medical Officer. Please, call me Elena when we're not on duty. I've reviewed your medical file - you're in excellent health, but don't hesitate to come by if that changes. Space travel can be hard on the body.",
+                "setFlag": "metMedicalOfficer",
+                "nextNode": "followup"
+            },
+            {
+                "id": "followup",
+                "text": "Sickbay is fully stocked and ready for the mission. I've also prepared medical profiles for all senior staff. Between you and me, get Chief Torres to take her vitamin supplements - engineers always forget.",
+                "nextNode": "ready"
+            },
+            {
+                "id": "ready",
+                "text": "My door is always open, Captain. Physical health, mental health, or just need someone to talk to - that's what I'm here for. The crew's wellbeing is my top priority.",
+                "loop": "ready"
+            }
+        ]
+    },
+    {
+        "id": "chief_engineer",
+        "name": "Chief Engineer Torres",
+        "description": "Chief Engineer Maria Torres is a woman who clearly lives for her work. Grease stains mark her uniform despite regulations, and her eyes constantly dart to the warp core displays. Her reputation as one of the fleet's finest engineers precedes her.",
+        "aliases": ["torres", "chief", "engineer", "engineering"],
+        "defaultGreeting": "Chief Torres barely looks up from her console, focused on her readouts.",
+        "dialogue": [
+            {
+                "id": "initial",
+                "text": "Captain! Sorry, I know I should stand at attention, but if I take my eyes off this plasma conduit calibration for even a second... There! Perfect. Chief Engineer Maria Torres, at your service. This warp core is my baby - I've tuned her to give us an extra point-five warp factor over specs.",
+                "setFlag": "metChiefEngineer",
+                "nextNode": "followup"
+            },
+            {
+                "id": "followup",
+                "text": "Engineering is ready for departure. More than ready, actually - I've been itching to see what this ship can really do. The Andromeda Sector will be a good test of her capabilities. Just promise me you won't push her past Warp 9.5 unless absolutely necessary.",
+                "nextNode": "ready"
+            },
+            {
+                "id": "ready",
+                "text": "The warp core is singing, Captain. Impulse engines are warm, shields are charged, and the structural integrity field is at full power. Engineering reports all green. We're ready when you are.",
+                "loop": "ready"
+            }
+        ]
+    }
+]

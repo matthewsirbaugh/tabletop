@@ -1,0 +1,607 @@
+/*
+================================================================================
+styles.css - Game Styling and Layout
+================================================================================
+
+PURPOSE:
+This stylesheet provides all visual styling for the interactive fiction game.
+It creates a clean, retro-futuristic aesthetic suitable for a space-themed
+text adventure while maintaining excellent readability.
+
+DESIGN PHILOSOPHY:
+- Minimal but polished appearance
+- High contrast for readability
+- Responsive layout using CSS Grid
+- Consistent spacing and typography
+- Accessible color choices
+
+SECTIONS:
+1. CSS Variables (custom properties for easy theming)
+2. Reset and Base Styles
+3. Layout (Grid container)
+4. Header Styles
+5. Status Panel Styles
+6. Game Output Styles
+7. Input Area Styles
+8. Suggested Commands Styles
+9. Utility Classes
+10. Responsive Adjustments
+
+================================================================================
+*/
+
+/* =============================================================================
+   1. CSS VARIABLES - Custom Properties for Theming
+   =============================================================================
+   These variables make it easy to adjust the color scheme and typography
+   throughout the entire application by changing values in one place.
+*/
+:root {
+    /* -- Primary Colors -- */
+    /* Main background color: deep space black with slight blue tint */
+    --color-background: #0a0e17;
+    
+    /* Primary text color: soft white for readability */
+    --color-text-primary: #e0e6ed;
+    
+    /* Secondary text color: muted for less important text */
+    --color-text-secondary: #8899aa;
+    
+    /* Accent color: cyan/teal for highlights and interactive elements */
+    --color-accent: #00d4ff;
+    
+    /* Accent hover state: brighter version for hover effects */
+    --color-accent-hover: #33ddff;
+    
+    /* Success color: green for positive feedback */
+    --color-success: #00ff88;
+    
+    /* Warning color: amber for cautions */
+    --color-warning: #ffaa00;
+    
+    /* Error color: red for errors and problems */
+    --color-error: #ff4466;
+    
+    /* Panel background: slightly lighter than main background */
+    --color-panel: #131a28;
+    
+    /* Border color: subtle separation between elements */
+    --color-border: #2a3a4a;
+    
+    /* -- Typography -- */
+    /* Primary font: monospace for that classic terminal feel */
+    --font-primary: 'Courier New', Courier, monospace;
+    
+    /* Font sizes using rem for accessibility */
+    --font-size-small: 0.875rem;   /* 14px at default browser settings */
+    --font-size-normal: 1rem;       /* 16px at default browser settings */
+    --font-size-large: 1.25rem;     /* 20px at default browser settings */
+    --font-size-xlarge: 1.5rem;     /* 24px at default browser settings */
+    --font-size-title: 2rem;        /* 32px at default browser settings */
+    
+    /* -- Spacing -- */
+    /* Consistent spacing scale based on 4px units */
+    --spacing-xs: 0.25rem;  /* 4px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+    
+    /* -- Layout -- */
+    /* Maximum width for the game container */
+    --max-width: 1200px;
+    
+    /* Border radius for rounded corners */
+    --border-radius: 4px;
+    
+    /* Transition duration for smooth animations */
+    --transition-speed: 0.2s;
+}
+
+/* =============================================================================
+   2. RESET AND BASE STYLES
+   =============================================================================
+   Basic reset to ensure consistent rendering across browsers.
+   Sets up default typography and box-sizing.
+*/
+
+/* Apply border-box sizing to all elements for predictable layouts */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin from body and set base styles */
+body {
+    margin: 0;                          /* Remove default body margin */
+    padding: 0;                         /* Remove default body padding */
+    font-family: var(--font-primary);   /* Use monospace font throughout */
+    font-size: var(--font-size-normal); /* Base font size */
+    line-height: 1.6;                   /* Comfortable line height for reading */
+    color: var(--color-text-primary);   /* Default text color */
+    background-color: var(--color-background); /* Dark background */
+    min-height: 100vh;                  /* Ensure body fills viewport */
+}
+
+/* Remove default margins from headings */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+/* Remove default margins and padding from paragraphs */
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================================================================
+   3. LAYOUT - CSS Grid Container
+   =============================================================================
+   The main game container uses CSS Grid for a flexible, responsive layout.
+   This creates distinct areas for header, status panel, output, and input.
+*/
+
+/* Main game container - centers the game and sets up grid layout */
+.game-container {
+    /* Center the container horizontally with auto margins */
+    max-width: var(--max-width);
+    margin: 0 auto;
+    
+    /* Ensure container fills available height */
+    min-height: 100vh;
+    
+    /* Add padding around the edges */
+    padding: var(--spacing-md);
+    
+    /* CSS Grid layout with named areas for clarity */
+    display: grid;
+    
+    /* Grid template:
+       - First row: header spans full width
+       - Second row: status panel on left, output on right
+       - Third row: input area spans full width
+    */
+    grid-template-areas:
+        "header header"
+        "status output"
+        "input input";
+    
+    /* Column widths: fixed status panel, flexible output area */
+    grid-template-columns: 250px 1fr;
+    
+    /* Row heights: auto for header/input, fill remaining for content */
+    grid-template-rows: auto 1fr auto;
+    
+    /* Gap between grid items */
+    gap: var(--spacing-md);
+}
+
+/* =============================================================================
+   4. HEADER STYLES
+   =============================================================================
+   The game header contains the title and subtitle.
+*/
+
+/* Header section styling */
+.game-header {
+    grid-area: header;                  /* Place in header grid area */
+    text-align: center;                 /* Center the text */
+    padding: var(--spacing-lg) 0;       /* Vertical padding */
+    border-bottom: 1px solid var(--color-border); /* Subtle separator */
+}
+
+/* Main game title */
+.game-title {
+    font-size: var(--font-size-title);  /* Large title size */
+    color: var(--color-accent);         /* Accent color for emphasis */
+    text-transform: uppercase;          /* All caps for impact */
+    letter-spacing: 0.2em;              /* Spread out letters */
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); /* Subtle glow effect */
+}
+
+/* Subtitle under the main title */
+.game-subtitle {
+    font-size: var(--font-size-normal); /* Normal size */
+    color: var(--color-text-secondary); /* Muted color */
+    margin-top: var(--spacing-xs);      /* Small gap from title */
+}
+
+/* =============================================================================
+   5. STATUS PANEL STYLES
+   =============================================================================
+   The status panel shows current location, objectives, and inventory count.
+   Positioned on the left side of the screen.
+*/
+
+/* Status panel container */
+.status-panel {
+    grid-area: status;                  /* Place in status grid area */
+    background-color: var(--color-panel); /* Slightly lighter background */
+    border: 1px solid var(--color-border); /* Subtle border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: var(--spacing-md);         /* Internal padding */
+    overflow-y: auto;                   /* Scroll if content overflows */
+}
+
+/* Panel title (e.g., "Ship Status") */
+.panel-title {
+    font-size: var(--font-size-large);  /* Larger than body text */
+    color: var(--color-accent);         /* Accent color */
+    margin-bottom: var(--spacing-md);   /* Space below title */
+    padding-bottom: var(--spacing-sm);  /* Space before border */
+    border-bottom: 1px solid var(--color-border); /* Separator line */
+}
+
+/* Individual status items (location, objectives, inventory) */
+.status-item {
+    margin-bottom: var(--spacing-md);   /* Space between items */
+}
+
+/* Label text for status items */
+.status-label {
+    display: block;                     /* Full width, own line */
+    font-size: var(--font-size-small);  /* Smaller text */
+    color: var(--color-text-secondary); /* Muted color */
+    margin-bottom: var(--spacing-xs);   /* Small gap before value */
+    text-transform: uppercase;          /* All caps for labels */
+}
+
+/* Value text for status items */
+.status-value {
+    display: block;                     /* Full width, own line */
+    font-size: var(--font-size-normal); /* Normal size */
+    color: var(--color-text-primary);   /* Primary text color */
+}
+
+/* Objective list container */
+.objective-list {
+    margin-top: var(--spacing-xs);      /* Small gap from label */
+}
+
+/* Individual objective item */
+.objective-item {
+    display: flex;                      /* Flexbox for checkbox + text */
+    align-items: flex-start;            /* Align to top */
+    margin-bottom: var(--spacing-xs);   /* Space between objectives */
+    font-size: var(--font-size-small);  /* Smaller text */
+}
+
+/* Checkbox indicator for objectives */
+.objective-checkbox {
+    margin-right: var(--spacing-xs);    /* Space after checkbox */
+    color: var(--color-text-secondary); /* Muted color by default */
+}
+
+/* Completed objective checkbox */
+.objective-checkbox.completed {
+    color: var(--color-success);        /* Green for completed */
+}
+
+/* Objective text */
+.objective-text {
+    color: var(--color-text-secondary); /* Muted by default */
+}
+
+/* Completed objective text */
+.objective-text.completed {
+    color: var(--color-success);        /* Green for completed */
+    text-decoration: line-through;      /* Strike through */
+}
+
+/* =============================================================================
+   6. GAME OUTPUT STYLES
+   =============================================================================
+   The main output area where game text appears.
+   Features scrollback and various message types.
+*/
+
+/* Main output container */
+.game-output {
+    grid-area: output;                  /* Place in output grid area */
+    background-color: var(--color-panel); /* Panel background */
+    border: 1px solid var(--color-border); /* Subtle border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: var(--spacing-md);         /* Internal padding */
+    display: flex;                      /* Flexbox for layout */
+    flex-direction: column;             /* Stack children vertically */
+    overflow: hidden;                   /* Hide overflow, scroll inside */
+}
+
+/* Output log - scrollable area for game messages */
+.output-log {
+    flex: 1;                            /* Fill available space */
+    overflow-y: auto;                   /* Vertical scrolling */
+    padding-right: var(--spacing-sm);   /* Space for scrollbar */
+}
+
+/* Individual message in the output */
+.output-message {
+    margin-bottom: var(--spacing-md);   /* Space between messages */
+    padding-bottom: var(--spacing-md);  /* Space before border */
+    border-bottom: 1px solid var(--color-border); /* Separator */
+}
+
+/* Remove border from last message */
+.output-message:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Player command echo (shows what the player typed) */
+.message-command {
+    color: var(--color-accent);         /* Accent color */
+    margin-bottom: var(--spacing-sm);   /* Small gap before response */
+}
+
+/* Command prompt symbol */
+.message-command::before {
+    content: '> ';                      /* Prepend prompt symbol */
+    color: var(--color-text-secondary); /* Muted prompt */
+}
+
+/* Room description text */
+.message-room {
+    color: var(--color-text-primary);   /* Primary color */
+}
+
+/* Room name/title */
+.room-name {
+    font-size: var(--font-size-large);  /* Larger text */
+    color: var(--color-accent);         /* Accent color */
+    margin-bottom: var(--spacing-sm);   /* Space after name */
+    display: block;                     /* Own line */
+}
+
+/* Room description paragraphs */
+.room-description {
+    margin-bottom: var(--spacing-sm);   /* Space between paragraphs */
+}
+
+/* List of items/exits in a room */
+.room-list {
+    color: var(--color-text-secondary); /* Muted color */
+    margin-top: var(--spacing-sm);      /* Space above list */
+}
+
+/* Normal game response text */
+.message-response {
+    color: var(--color-text-primary);   /* Primary text */
+}
+
+/* Error message styling */
+.message-error {
+    color: var(--color-error);          /* Red error color */
+}
+
+/* Success message styling */
+.message-success {
+    color: var(--color-success);        /* Green success color */
+}
+
+/* Warning message styling */
+.message-warning {
+    color: var(--color-warning);        /* Amber warning color */
+}
+
+/* Dialogue/speech styling */
+.message-dialogue {
+    color: var(--color-text-primary);   /* Primary color */
+    font-style: italic;                 /* Italicize speech */
+    padding-left: var(--spacing-md);    /* Indent for distinction */
+    border-left: 2px solid var(--color-accent); /* Accent border */
+}
+
+/* Character name in dialogue */
+.dialogue-speaker {
+    color: var(--color-accent);         /* Accent color */
+    font-weight: bold;                  /* Bold for emphasis */
+    font-style: normal;                 /* Not italic */
+}
+
+/* System message (help, etc.) */
+.message-system {
+    color: var(--color-text-secondary); /* Muted color */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
+    padding: var(--spacing-sm);         /* Internal padding */
+    border-radius: var(--border-radius); /* Rounded corners */
+}
+
+/* =============================================================================
+   7. INPUT AREA STYLES
+   =============================================================================
+   The command input area at the bottom of the screen.
+*/
+
+/* Input area container */
+.input-area {
+    grid-area: input;                   /* Place in input grid area */
+    display: flex;                      /* Flexbox for layout */
+    align-items: center;                /* Center vertically */
+    background-color: var(--color-panel); /* Panel background */
+    border: 1px solid var(--color-border); /* Subtle border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: var(--spacing-sm);         /* Internal padding */
+}
+
+/* Command prompt symbol (>) */
+.input-prompt {
+    font-size: var(--font-size-large);  /* Larger prompt */
+    color: var(--color-accent);         /* Accent color */
+    margin-right: var(--spacing-sm);    /* Space after prompt */
+    user-select: none;                  /* Prevent selection */
+}
+
+/* Text input field */
+.command-input {
+    flex: 1;                            /* Fill available space */
+    background-color: transparent;      /* No background */
+    border: none;                       /* No border */
+    outline: none;                      /* No focus outline */
+    color: var(--color-text-primary);   /* Primary text color */
+    font-family: var(--font-primary);   /* Monospace font */
+    font-size: var(--font-size-normal); /* Normal size */
+    padding: var(--spacing-sm);         /* Internal padding */
+}
+
+/* Placeholder text styling */
+.command-input::placeholder {
+    color: var(--color-text-secondary); /* Muted placeholder */
+}
+
+/* Submit button */
+.submit-button {
+    background-color: var(--color-accent); /* Accent background */
+    color: var(--color-background);     /* Dark text for contrast */
+    border: none;                       /* No border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    padding: var(--spacing-sm) var(--spacing-md); /* Button padding */
+    font-family: var(--font-primary);   /* Monospace font */
+    font-size: var(--font-size-normal); /* Normal size */
+    cursor: pointer;                    /* Pointer cursor on hover */
+    transition: background-color var(--transition-speed); /* Smooth hover */
+}
+
+/* Submit button hover state */
+.submit-button:hover {
+    background-color: var(--color-accent-hover); /* Brighter on hover */
+}
+
+/* Submit button focus state (for keyboard navigation) */
+.submit-button:focus {
+    outline: 2px solid var(--color-accent); /* Visible focus ring */
+    outline-offset: 2px;                /* Offset from button */
+}
+
+/* =============================================================================
+   8. SUGGESTED COMMANDS STYLES
+   =============================================================================
+   Clickable command suggestions that appear after room descriptions.
+*/
+
+/* Container for suggested commands */
+.suggested-commands {
+    margin-top: var(--spacing-md);      /* Space above suggestions */
+    padding-top: var(--spacing-md);     /* Space before border */
+    border-top: 1px solid var(--color-border); /* Separator */
+    display: flex;                      /* Flexbox for buttons */
+    flex-wrap: wrap;                    /* Wrap to multiple lines if needed */
+    gap: var(--spacing-sm);             /* Gap between buttons */
+}
+
+/* Individual suggested command button */
+.suggested-command {
+    background-color: transparent;      /* No background */
+    border: 1px solid var(--color-border); /* Subtle border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    color: var(--color-text-secondary); /* Muted text */
+    font-family: var(--font-primary);   /* Monospace font */
+    font-size: var(--font-size-small);  /* Smaller text */
+    padding: var(--spacing-xs) var(--spacing-sm); /* Button padding */
+    cursor: pointer;                    /* Pointer cursor */
+    transition: all var(--transition-speed); /* Smooth transitions */
+}
+
+/* Suggested command hover state */
+.suggested-command:hover {
+    border-color: var(--color-accent);  /* Accent border on hover */
+    color: var(--color-accent);         /* Accent text on hover */
+    background-color: rgba(0, 212, 255, 0.1); /* Subtle background */
+}
+
+/* =============================================================================
+   9. UTILITY CLASSES
+   =============================================================================
+   Helper classes for common styling needs.
+*/
+
+/* Hidden element (display: none) */
+.hidden {
+    display: none !important;           /* Force hide */
+}
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =============================================================================
+   10. RESPONSIVE ADJUSTMENTS
+   =============================================================================
+   Media queries for different screen sizes.
+*/
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+    /* Stack layout vertically on narrow screens */
+    .game-container {
+        grid-template-areas:
+            "header"
+            "status"
+            "output"
+            "input";
+        grid-template-columns: 1fr;     /* Single column */
+        grid-template-rows: auto auto 1fr auto; /* Adjusted heights */
+    }
+    
+    /* Reduce status panel height on mobile */
+    .status-panel {
+        max-height: 150px;              /* Limit height */
+    }
+    
+    /* Reduce header padding on mobile */
+    .game-header {
+        padding: var(--spacing-md) 0;
+    }
+    
+    /* Smaller title on mobile */
+    .game-title {
+        font-size: var(--font-size-xlarge);
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Very small screens (phones in portrait) */
+@media (max-width: 480px) {
+    /* Reduce container padding */
+    .game-container {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+    
+    /* Even smaller title */
+    .game-title {
+        font-size: var(--font-size-large);
+    }
+    
+    /* Hide subtitle on very small screens */
+    .game-subtitle {
+        display: none;
+    }
+}
+
+/* Custom scrollbar styling for Webkit browsers */
+.output-log::-webkit-scrollbar {
+    width: 8px;                         /* Scrollbar width */
+}
+
+.output-log::-webkit-scrollbar-track {
+    background: var(--color-background); /* Track background */
+}
+
+.output-log::-webkit-scrollbar-thumb {
+    background-color: var(--color-border); /* Thumb color */
+    border-radius: 4px;                 /* Rounded thumb */
+}
+
+.output-log::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-secondary); /* Brighter on hover */
+}

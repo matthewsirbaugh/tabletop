@@ -1,0 +1,100 @@
+[
+    {
+        "id": "bridge",
+        "name": "Bridge",
+        "description": "The nerve center of the USS Horizon gleams with advanced technology. Holographic displays cast a soft blue glow across the command deck. The captain's chair sits elevated in the center, facing a vast viewscreen that currently shows the interior of Starbase Delta's docking bay. Consoles line the perimeter, each station ready for its officer.",
+        "exits": {
+            "south": "corridor",
+            "west": "readyroom"
+        },
+        "items": ["captains_tablet"],
+        "characters": ["helmsman"],
+        "features": {
+            "viewscreen": "The massive viewscreen displays the interior of the starbase docking bay. Through the transparent docking doors, you can see stars twinkling in the vast darkness beyond.",
+            "chair": "The captain's chair is ergonomically designed with integrated armrest controls. A small plaque reads: 'USS Horizon - NCC-7749'. This is your seat now.",
+            "consoles": "Multiple workstations surround the bridge: helm, navigation, tactical, science, and communications. Each displays readiness status indicators."
+        }
+    },
+    {
+        "id": "readyroom",
+        "name": "Captain's Ready Room",
+        "description": "Your private office adjacent to the bridge. A curved window offers a view of the stars beyond the starbase. A polished desk holds a personal terminal, and the walls display the ship's dedication plaque alongside commissioned artwork depicting famous vessels from exploration history.",
+        "exits": {
+            "east": "bridge"
+        },
+        "items": ["access_badge", "personal_log"],
+        "characters": ["first_officer"],
+        "features": {
+            "window": "Through the curved window, you can see the skeletal framework of the starbase, and beyond it, countless stars. Somewhere out there lies the Andromeda Sector.",
+            "desk": "A sleek desk with an integrated terminal. Several padded chairs face it for meetings. A small model of the USS Horizon sits on one corner.",
+            "plaque": "The dedication plaque reads: 'USS Horizon NCC-7749 - To boldly explore the unknown.' Below it lists the shipyard and commissioning date."
+        }
+    },
+    {
+        "id": "corridor",
+        "name": "Main Corridor - Deck 1",
+        "description": "A wide corridor stretches through the ship's primary deck. Soft lighting panels line the ceiling, and the walls display directional markers to various departments. The hum of the ship's systems provides a constant, reassuring background noise. Crew members occasionally pass by, nodding respectfully.",
+        "exits": {
+            "north": "bridge",
+            "south": "turbolift",
+            "east": "sickbay"
+        },
+        "items": [],
+        "characters": [],
+        "features": {
+            "markers": "Wall displays indicate directions: Bridge (North), Turbolift (South), Sickbay (East).",
+            "lighting": "The corridor lighting automatically adjusts to a comfortable level as you move through."
+        }
+    },
+    {
+        "id": "sickbay",
+        "name": "Sickbay",
+        "description": "The ship's medical facility is pristine and well-organized. Biobeds with integrated diagnostic displays line one wall, while medical storage cabinets fill another. A private office for the Chief Medical Officer occupies a corner, and the air carries a faint antiseptic scent.",
+        "exits": {
+            "west": "corridor"
+        },
+        "items": ["medical_scanner"],
+        "characters": ["medical_officer"],
+        "features": {
+            "biobeds": "Three biobeds stand ready, each with overhead diagnostic sensors and emergency medical equipment nearby.",
+            "cabinets": "Transparent-fronted cabinets display medical supplies, hyposprays, and emergency equipment, all neatly organized.",
+            "office": "The CMO's office has a desk with medical reference materials and a comfortable chair. Personal touches include a small plant and family photographs."
+        }
+    },
+    {
+        "id": "turbolift",
+        "name": "Turbolift Junction",
+        "description": "The turbolift hub connects different decks of the ship. A circular platform sits within an illuminated tube, awaiting voice commands. Display panels show the current deck and available destinations throughout the vessel.",
+        "exits": {
+            "north": "corridor",
+            "down": "engineering"
+        },
+        "lockedExits": {
+            "down": {
+                "requiresItem": "access_badge",
+                "message": "The turbolift announces: 'Engineering deck access restricted. Please present authorization.' You'll need proper credentials to access that area."
+            }
+        },
+        "items": [],
+        "characters": [],
+        "features": {
+            "display": "The display panel shows: Deck 1 (Current) - Bridge, Ready Room, Sickbay. Deck 4 - Main Engineering (Restricted Access).",
+            "platform": "The circular turbolift platform has subtle lighting around its edge. It can transport you quickly between decks."
+        }
+    },
+    {
+        "id": "engineering",
+        "name": "Main Engineering",
+        "description": "The heart of the USS Horizon pulses with energy. The massive warp core dominates the center of the room, its pulsing blue light reflecting off every surface. Diagnostic stations surround the core, and the air vibrates with the low thrum of barely contained power. This is where the ship's incredible capabilities are made possible.",
+        "exits": {
+            "up": "turbolift"
+        },
+        "items": ["engineering_toolkit", "ship_readiness_padd"],
+        "characters": ["chief_engineer"],
+        "features": {
+            "warp_core": "The warp core is a towering cylinder of controlled matter-antimatter reactions. Its rhythmic pulsing is hypnotic, and the power it generates could level a city - or propel a ship across the galaxy.",
+            "stations": "Engineering stations monitor every system: life support, power distribution, structural integrity, propulsion. All show green status lights.",
+            "ceiling": "Catwalks and access ladders crisscross the high ceiling, allowing maintenance access to the upper warp core assembly."
+        }
+    }
+]
