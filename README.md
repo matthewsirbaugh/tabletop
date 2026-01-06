@@ -10,6 +10,7 @@ A browser-based interactive fiction (text adventure) game engine that runs as a 
 - **Modular**: Clean separation between engine code and content
 - **Extensible**: Add new rooms, items, characters, and commands via JSON
 - **Beginner-friendly**: Extensively commented code suitable for learning
+- **Mobile-friendly**: Optimized for touch devices and responsive across screen sizes
 
 ### Current Demo Story
 
@@ -491,6 +492,37 @@ Player Input → CommandParser → Parsed Command → GameRules → GameState (m
 **"Room/item not found"**
 - Verify the ID matches exactly (case-sensitive)
 - Check that the item/room is defined in its JSON file
+
+---
+
+## Mobile Support
+
+The game is fully optimized for mobile devices and touch interactions:
+
+### Mobile Features
+
+- **Touch-friendly buttons**: All interactive elements (suggested commands, submit button) meet the recommended 44-48px minimum touch target size
+- **Responsive layout**: The interface automatically adapts from a two-column desktop layout to a single-column mobile layout
+- **Safe area support**: Proper handling of notched devices (iPhone X and later) with CSS safe-area-inset
+- **Optimized input**: The text input uses 16px font size to prevent iOS auto-zoom on focus
+- **Landscape support**: Special layout optimizations for phones in landscape orientation
+- **Touch feedback**: Visual feedback on button presses for better touch interaction
+- **Smooth scrolling**: Native smooth scrolling for the game output and objective list
+
+### Breakpoints
+
+| Screen Size | Layout |
+|-------------|--------|
+| > 768px | Two-column layout (status panel + game output side by side) |
+| 481-768px | Single-column layout with larger touch targets |
+| ≤ 480px | Compact single-column layout optimized for phones |
+| Landscape (≤ 812px) | Two-column layout with reduced header |
+
+### Best Practices for Mobile Play
+
+1. **Use suggested commands**: Tap the command buttons below the game output for common actions
+2. **Portrait orientation**: The game works best in portrait mode on phones
+3. **Scroll to see history**: Swipe up in the game output area to review previous messages
 
 ---
 
