@@ -632,14 +632,14 @@ p {
         gap: var(--spacing-sm);
         padding-top: var(--spacing-sm);
         margin-top: var(--spacing-sm);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Reliable two-column layout */
     }
     
     .suggested-command {
         padding: var(--spacing-md);     /* Larger padding for easier tapping */
         font-size: var(--font-size-normal);
         min-height: 48px;               /* Even larger touch target on phones */
-        flex: 1 1 auto;                 /* Allow buttons to grow */
-        min-width: calc(50% - var(--spacing-sm)); /* Two buttons per row */
         text-align: center;
     }
     
@@ -775,12 +775,13 @@ p {
     /* Smoother scrolling on touch devices */
     .output-log,
     .objective-list {
-        -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
     }
 }
 
-/* Landscape orientation adjustments for phones */
+/* Landscape orientation adjustments for phones
+   Uses 812px to target common phone landscape widths (iPhone X/11/12/13/14)
+   while not affecting tablets in landscape which are typically wider */
 @media (max-width: 812px) and (orientation: landscape) {
     .game-container {
         grid-template-areas:
