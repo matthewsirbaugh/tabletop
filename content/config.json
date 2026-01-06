@@ -1,0 +1,30 @@
+{
+    "title": "Stellar Voyager",
+    "introText": "You have just been promoted to Captain of the USS Horizon, a state-of-the-art deep space exploration vessel. Before your first mission to the Andromeda Sector, you must meet your senior officers and ensure the ship is ready for departure.\n\nYour first task: introduce yourself to the crew and complete the pre-departure checklist.",
+    "startingRoom": "bridge",
+    "version": "1.0.0",
+    "author": "Interactive Fiction Engine",
+    "objectives": [
+        {
+            "flag": "metFirstOfficer",
+            "description": "Meet the First Officer"
+        },
+        {
+            "flag": "metChiefEngineer",
+            "description": "Meet the Chief Engineer"
+        },
+        {
+            "flag": "metMedicalOfficer",
+            "description": "Meet the Medical Officer"
+        },
+        {
+            "flag": "metHelmsman",
+            "description": "Meet the Helmsman"
+        },
+        {
+            "flag": "shipReadinessComplete",
+            "description": "Complete ship readiness check"
+        }
+    ],
+    "victoryText": "Congratulations, Captain! You have met your senior staff and completed the pre-departure checklist. The USS Horizon is now ready for its maiden voyage to the Andromeda Sector. The crew stands ready at their stations, awaiting your command.\n\n'All stations report ready, Captain,' announces Commander Chen. 'Awaiting your order to depart.'\n\nYour adventure among the stars is just beginning..."
+}

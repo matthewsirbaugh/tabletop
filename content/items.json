@@ -1,0 +1,94 @@
+[
+    {
+        "id": "captains_tablet",
+        "name": "Captain's Tablet",
+        "description": "A sleek personal tablet displaying the ship's status overview. The screen shows crew manifests, departmental reports, and mission briefings. Your name and rank appear in the header: 'Captain - USS Horizon'.",
+        "shortDescription": "Ship status tablet",
+        "aliases": ["tablet", "padd", "datapad"],
+        "takeable": true,
+        "visible": true,
+        "useActions": [
+            {
+                "message": "You review the tablet's contents. The crew manifest shows all senior positions filled. Department reports indicate all systems nominal. A reminder flashes: 'Complete pre-departure checklist before leaving starbase.'",
+                "setFlag": "readTablet"
+            }
+        ]
+    },
+    {
+        "id": "access_badge",
+        "name": "Captain's Access Badge",
+        "description": "A small metallic badge with your authorization codes encoded within. This grants you access to all areas of the ship, including restricted sections like Main Engineering. The badge displays the ship's emblem and your security clearance level: Alpha-One.",
+        "shortDescription": "All-access security badge",
+        "aliases": ["badge", "credentials", "id", "authorization"],
+        "takeable": true,
+        "visible": true,
+        "onTake": {
+            "message": "You clip the badge to your uniform. Engineering and other restricted areas are now accessible to you."
+        }
+    },
+    {
+        "id": "personal_log",
+        "name": "Personal Log Device",
+        "description": "A small recording device for making personal log entries. Previous captains' logs are archived within, dating back to the ship's commissioning. The most recent entry is from the temporary commander who brought the ship from the shipyard.",
+        "shortDescription": "Voice recording device",
+        "aliases": ["log", "recorder", "device"],
+        "takeable": true,
+        "visible": true,
+        "useActions": [
+            {
+                "message": "You activate the device. 'Captain's Log, Stardate... well, I suppose I should figure out the stardate system. This is my first entry as Captain of the USS Horizon. We're preparing to depart Starbase Delta for our mission to the Andromeda Sector. First things first - meet the crew.'"
+            }
+        ]
+    },
+    {
+        "id": "medical_scanner",
+        "name": "Medical Tricorder",
+        "description": "A handheld medical diagnostic device. When activated, it can scan biological life forms and identify medical conditions. The compact device folds open to reveal a small display and sensor array.",
+        "shortDescription": "Portable medical scanner",
+        "aliases": ["tricorder", "scanner", "medical"],
+        "takeable": true,
+        "visible": true,
+        "useActions": [
+            {
+                "target": "medical_officer",
+                "message": "Doctor Vasquez raises an eyebrow as you scan her. 'All vital signs excellent, Captain. I run a clean operation here - including myself.'"
+            },
+            {
+                "message": "You scan yourself. The device reports: 'Subject: Human. Vital signs normal. Elevated cortisol levels consistent with mild stress.' Being a new captain is stressful, apparently."
+            }
+        ]
+    },
+    {
+        "id": "engineering_toolkit",
+        "name": "Engineering Toolkit",
+        "description": "A compact case containing various tools for ship maintenance and repair: magnetic drivers, plasma couplers, ODN spanners, and diagnostic probes. Essential equipment for any engineer worth their salt.",
+        "shortDescription": "Repair and diagnostic tools",
+        "aliases": ["toolkit", "tools", "kit", "case"],
+        "takeable": true,
+        "visible": true,
+        "useActions": [
+            {
+                "target": "warp_core",
+                "message": "You perform a quick diagnostic on the warp core. All readings nominal. Chief Engineer Torres gives you an approving nod. 'Good instincts, Captain. Always check the core yourself when you can.'"
+            },
+            {
+                "message": "You examine the toolkit's contents. Everything is present and well-maintained. The tools could be used for various repairs around the ship."
+            }
+        ]
+    },
+    {
+        "id": "ship_readiness_padd",
+        "name": "Ship Readiness PADD",
+        "description": "An official document containing the pre-departure checklist for the USS Horizon. Various department heads must confirm their sections are ready for launch. Several signatures are already present, but the final authorization requires the Captain's confirmation.",
+        "shortDescription": "Pre-departure checklist",
+        "aliases": ["readiness", "checklist", "padd", "clipboard"],
+        "takeable": true,
+        "visible": true,
+        "useActions": [
+            {
+                "message": "You review the readiness checklist:\n\n✓ Helm - Navigation systems calibrated\n✓ Sickbay - Medical supplies stocked\n✓ Engineering - Warp core online\n✓ Bridge - Communications tested\n\nAll departments report ready. You add your authorization signature.\n\nThe PADD confirms: 'USS Horizon - Cleared for departure.'",
+                "setFlag": "shipReadinessComplete"
+            }
+        ]
+    }
+]
