@@ -34,7 +34,14 @@ See README.md for detailed instructions.
     <meta charset="UTF-8">
     
     <!-- Responsive viewport settings for mobile compatibility -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- maximum-scale=5 allows zoom while preventing accidental double-tap zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#0a0e17">
+    
+    <!-- Prevent phone number detection on iOS -->
+    <meta name="format-detection" content="telephone=no">
     
     <!-- Page title shown in browser tab -->
     <title>Stellar Voyager - Interactive Fiction</title>
